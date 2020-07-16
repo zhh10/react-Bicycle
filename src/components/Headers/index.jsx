@@ -26,22 +26,22 @@ export default class headers extends React.Component{
     render(){
         return (
             <div className="headers">
-                <Row className="first-header">
+                <Row className="firstHeader">
                     <Col span={24}>
                         <span>欢迎你 admin</span>
                         <a href="#">退出</a>
                     </Col>
                 </Row>
-                <Row className="second-header">
-                    <Col span={4} className="second-header-title">
+                <Row className="secondHeader">
+                    <Col span={4} className="secondHeadertitle">
                         首页
                     </Col>
-                    <Col span={20} className="second-header-context">
+                    <Col span={20} className="secondHeaderContext">
                         <span className="date">{this.state.localDate}</span>
-                        <span className="weather-img">
+                        <span className="weatherImg">
                             <img src={this.state.picture} alt=""/>
                         </span>
-                        <span className="weather-text">{this.state.weather}</span>
+                        <span className="weatherText">{this.state.weather}</span>
                     </Col>
                 </Row>
                 
