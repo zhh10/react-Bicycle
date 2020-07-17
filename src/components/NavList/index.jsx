@@ -3,14 +3,22 @@ import "./index.less"
 import {Menu} from "antd"
 import MenuList from "../../config"
 import { NavLink } from "react-router-dom"
+import {connect} from "react-redux"
+import {switchMenu} from "../../redux/action"
 const {SubMenu} = Menu ;
-export default class navList extends React.Component{
+
+class navList extends React.Component{
     state = {
         menuTreeNode:null
     }
     componentWillMount(){
         const menuTreeNode = this.renderTree(MenuList)
         this.setState({menuTreeNode})
+    }
+    // 点击redux
+    handleClick =({item,key})=>{
+        let title = item.props.children.props.children
+        this.props.SwitchMenu(title)
     }
     renderTree = (data)=>{
         const menuTreeNode = data.map(item => {
@@ -36,10 +44,21 @@ export default class navList extends React.Component{
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}
                 mode="vertical"
-                theme="dark">
+                theme="dark"
+                onClick={this.handleClick}>
                     {this.state.menuTreeNode}
                 </Menu>
             </div>
         )
     }
 }
+function mapStateToProp(state){
+    return {title:state}
+}
+function mapDispatchToProp(dispatch){
+    return {
+        SwitchMenu(title){dispatch(switchMenu(title))}
+    }
+}
+
+export default connect(undefined,mapDispatchToProp)(navList)

@@ -10,7 +10,8 @@ import Home from "./pages/home"
 import City from "./pages/City"
 import Order from "./pages/Order"
 import User from "./pages/User"
-function Admin() {
+import BikeMap from "./pages/bikeMap"
+function Admin(props) {
   return (
     <div className="App">
         <Row className="container">
@@ -27,6 +28,7 @@ function Admin() {
                         <Route path="/admin/city" component={City} />
                         <Route path="/admin/order" component={Order} />
                         <Route path="/admin/user" component={User} />
+                        <Route path="/admin/bikeMap" component={BikeMap} />
                         <Redirect to='/admin/home' />
                     </Switch>
                 </Row>

@@ -86,7 +86,10 @@ export default class Order extends React.Component{
         },{
             title:"状态",
             dataIndex:"status",
-            key:"status"
+            key:"status",
+            render(item){
+                return item==1?'进行中':'已结束'
+            }
         },{
             title:"开始时间",
             dataIndex:"start_time",
@@ -118,14 +121,13 @@ export default class Order extends React.Component{
                 <Card>
                     <Button style={{marginRight:20}} type="primary"
                     onClick={this.queryDetail}>订单详情</Button>
-                    <Button type="primary" onClick={this.closeOrder}>结束订单</Button>
+                    <Button type="primary" onClick={this.closeOrder}>删除订单</Button>
                 </Card>
                 <div>
                     <Table 
                     columns={columns}
                     rowSelection={rowSelection}
                     dataSource={this.state.dataSource}
-                    pagination={false}
                     onRow={(record,index)=>{
                         let selectKey = [index+1];
                         return {

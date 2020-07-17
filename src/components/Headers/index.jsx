@@ -1,13 +1,18 @@
 import React from "react" 
 import {Row,Col} from "antd"
 import {handleDate} from "../../utils" // 处理时间的函数
-import Axios from "../../axios"
+import Axios from "../../axios" 
+import {connect} from "react-redux"
 import './index.less'
-export default class headers extends React.Component{
+import {withRouter} from "react-router-dom" 
+class Headers extends React.Component{
     state = {
         localDate:null,weather:null,picture:null,
     }
     componentWillMount(){
+        this.props.history.listen(function(location){
+            // 在这里修改 首页名
+        })
         // 每隔一秒修改时间
         setInterval(()=>{
             let localDate = handleDate(new Date())
@@ -34,7 +39,7 @@ export default class headers extends React.Component{
                 </Row>
                 <Row className="secondHeader">
                     <Col span={4} className="secondHeadertitle">
-                        首页
+                        {this.props.title}
                     </Col>
                     <Col span={20} className="secondHeaderContext">
                         <span className="date">{this.state.localDate}</span>
@@ -49,3 +54,8 @@ export default class headers extends React.Component{
         )
     }
 }
+function mapStateToProp(state){
+    return {title:state}
+}
+
+export default withRouter(connect(mapStateToProp)(Headers))
