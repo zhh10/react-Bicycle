@@ -37,7 +37,8 @@ class BikeForm extends React.Component{
                 <FormItem label="订单状态">
                 {
                         getFieldDecorator("status")(
-                            <Select placeholder='进行中' style={{width:100}}>
+                            <Select  style={{width:100}} 
+                            >
                                 <Option value="0">进行中</Option>
                                 <Option value="1">已结束</Option>
                             </Select>
